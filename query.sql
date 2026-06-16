@@ -1,3 +1,4 @@
+-- 1. Crear una tabla final temporal uniendo las tablas mensuales
 create table cyclists.year_data as
 SELECT * FROM `cyclists.tripdata_202501`
 UNION ALL
@@ -23,6 +24,7 @@ select * from `cyclists.tripdata_202603`
 union all
 select * from `cyclists.tripdata_202604`
 
+-- 
 SELECT member_casual,
 count (*) as total_rides
 FROM `project-85122fde-713f-4159-960.cyclists.year_data`
