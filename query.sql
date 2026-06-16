@@ -24,12 +24,13 @@ select * from `cyclists.tripdata_202603`
 union all
 select * from `cyclists.tripdata_202604`
 
--- 
+-- 2. Contar viajes por tipo de cliente
 SELECT member_casual,
 count (*) as total_rides
 FROM `project-85122fde-713f-4159-960.cyclists.year_data`
 group by member_casual;
 
+-- 3. Calcular la media del tiempo de viaje por tipo de cliente
 SELECT
 member_casual,
 COUNT (*) as total_rides,
@@ -37,6 +38,7 @@ avg(round(timestamp_diff(ended_at, started_at, MINUTE),2)) as avg_ride_lenght
 FROM `project-85122fde-713f-4159-960.cyclists.year_data`
 group by member_casual
 
+-- 4. Contar viajes por tipo de día
 SELECT
 ride_id,
 rideable_type,
@@ -48,6 +50,7 @@ count (ride_id) as number_of_rides,
 from `project-85122fde-713f-4159-960.cyclists.year_data`
 group by ride_id, day_type, rideable_type;
 
+-- 5. Contar viajes por momento del día
 SELECT
 case
 when (extract (HOUR from started_at) between 6 and 12) then 'Morning'
@@ -60,6 +63,7 @@ FROM `project-85122fde-713f-4159-960.cyclists.year_data`
 group by time_of_the_day
 order by time_of_the_day;
 
+-- 6. Contar viajes por tipo de cliente y mes
 SELECT
 member_casual,
 COUNT (*) as total_rides,
